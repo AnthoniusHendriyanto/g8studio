@@ -52,22 +52,34 @@ To preview the production build locally:
 npm run preview
 ```
 
-## Hg Project Structure
+## ✨ Key Features (Phase 1 Completed)
+
+- **Premium Design:** Minimalist aesthetic with "Apple-like" animations using Framer Motion.
+- **Interactive Portfolio:** Gallery lightbox with slideshow support for multiple project photos.
+- **WhatsApp Integration:** Direct connection for "Start Your Project" and floating chat button.
+- **Linktree Page:** Dedicated mobile-friendly links page (`/links`) for social bio.
+- **Contact Wizard:** "Project Kickstarter" form that pre-fills WhatsApp messages.
+- **Location:** Embedded Google Maps integration for easier office finding.
+- **SEO Ready:** Basic meta tags and Open Graph setup.
+
+## 📁 Project Structure
 
 ```
 src/
 ├── assets/        # Static assets (images, fonts)
 ├── components/    # Reusable UI components
 │   ├── home/      # Home page specific sections
-│   ├── layout/    # Layout components (Footer, Header)
-│   └── ui/        # shadcn/ui primitives
+│   ├── layout/    # Layout components (Navbar, Footer with Contact Info)
+│   └── ui/        # shadcn/ui primitives & buttons
 ├── contexts/      # React contexts (Language, Theme)
 ├── hooks/         # Custom React hooks
 ├── lib/           # Utility functions
-├── pages/         # Route pages (Home, About, Contact, etc.)
+├── pages/         # Route pages (Home, Portfolio, Links, Contact)
 └── index.css      # Global styles and Tailwind directives
 ```
 
-## 🔮 Next Steps
+## 🔮 Roadmap (Phase 2 & Beyond)
 
-For recommended features and improvements, please refer to [NEXT_PHASE.md](./NEXT_PHASE.md).
+We are transitioning to a dynamic, database-driven application.
+For the detailed implementation plan (Supabase + Admin Dashboard), please refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
+
