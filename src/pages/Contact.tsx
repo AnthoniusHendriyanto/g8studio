@@ -175,67 +175,67 @@ const Contact = () => {
                 <div>
                   <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
                   <div className="space-y-6">
+                    {/* Address */}
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-5 h-5 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">{t.contact.info.location}</h3>
-                        <p className="text-muted-foreground">{t.contact.info.locationValue}</p>
+                        <h3 className="font-semibold mb-1">Location</h3>
+                        <p className="text-muted-foreground">
+                          Ruko Magna Commercial Summarecon<br />
+                          Jalan Magna Timur Blok MC/058<br />
+                          Bandung - 40295, Jawa Barat, Indonesia
+                        </p>
                       </div>
                     </div>
 
+                    {/* Phone Numbers */}
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Phone className="w-5 h-5 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">{t.contact.info.type}</h3>
-                        <p className="text-muted-foreground">{t.contact.info.typeValue}</p>
+                        <h3 className="font-semibold mb-1">Phone</h3>
+                        <div className="text-muted-foreground space-y-1">
+                          <div>Office: +62 22 3209 3846</div>
+                          <div className="mt-2">
+                            <div className="font-medium text-foreground">WhatsApp (HPL Store):</div>
+                            <div>+62 811 1906 879</div>
+                          </div>
+                          <div className="mt-2">
+                            <div className="font-medium text-foreground">WhatsApp (Arc. & Interior):</div>
+                            <div>+62 811 1966 879</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
+                    {/* Email */}
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Mail className="w-5 h-5 text-accent" />
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <p className="text-muted-foreground">hello@g8studio.id</p>
+                        <p className="text-muted-foreground">cv.studiogdelapanmandiri@gmail.com</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* WhatsApp CTA */}
-                <div className="bg-[#25D366]/10 rounded-xl p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-1">Chat via WhatsApp</h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Get quick responses through WhatsApp
-                      </p>
-                      <Button asChild variant="default" size="sm">
-                        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                          {t.contact.info.whatsappValue}
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Map Placeholder */}
-                <div className="rounded-xl overflow-hidden h-64 bg-muted">
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                    <div className="text-center">
-                      <MapPin className="w-8 h-8 mx-auto mb-2" />
-                      <p className="text-sm">Google Maps Embed</p>
-                      <p className="text-xs">Bandung, Indonesia</p>
-                    </div>
-                  </div>
+                {/* Google Maps */}
+                <div className="rounded-xl overflow-hidden h-64 lg:h-80">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.4296270146024!2d107.68709427573987!3d-6.958540368130217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c3529e06e1ef%3A0x583ed1fcd1225cc4!2sStudio%20G8%20HPL%20Store%20and%20Architecture%20%26%20Interior%20Design%20Studio!5e0!3m2!1sen!2sid!4v1769516001572!5m2!1sen!2sid"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="G8 Studio Location"
+                  />
                 </div>
               </motion.div>
             </div>

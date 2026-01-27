@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import logoImage from '@/assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: t.nav.home },
     { href: '/services', label: t.nav.services },
+    { href: '/portfolio', label: 'Portfolio' },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact },
   ];
@@ -32,19 +34,20 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? 'bg-background/95 backdrop-blur-md shadow-sm'
+        : 'bg-transparent'
+        }`}
     >
       <nav className="container-max section-padding !py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold tracking-tight text-foreground">
-              G8<span className="text-accent">.</span>Studio
-            </span>
+          <Link to="/" className="flex items-center">
+            <img
+              src={logoImage}
+              alt="G8 Studio - HPL Store & Architect Interior"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -53,11 +56,10 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  location.pathname === link.href
-                    ? 'text-accent'
-                    : 'text-muted-foreground'
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-accent ${location.pathname === link.href
+                  ? 'text-accent'
+                  : 'text-muted-foreground'
+                  }`}
               >
                 {link.label}
               </Link>
@@ -105,11 +107,10 @@ const Navbar = () => {
                     key={link.href}
                     to={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block text-lg font-medium transition-colors ${
-                      location.pathname === link.href
-                        ? 'text-accent'
-                        : 'text-foreground'
-                    }`}
+                    className={`block text-lg font-medium transition-colors ${location.pathname === link.href
+                      ? 'text-accent'
+                      : 'text-foreground'
+                      }`}
                   >
                     {link.label}
                   </Link>

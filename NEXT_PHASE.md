@@ -1,70 +1,80 @@
-# Next Phase Recommendations
+# Phase 2 Implementation Plan: Dynamic Content & Control Center
 
-This document outlines the recommended roadmap for taking the G8 Studio project from its current static state to a production-ready, dynamic web application.
+## Goal
+Transition G8 Studio from a static website to a dynamic, database-driven application. This allows the owner to manage Portfolio projects and Partner brands easily via a secure Admin Dashboard without touching code.
 
-## 🚨 Immediate Priorities (Phase 1)
-*Focus on fixing placeholders and ensuring basic functionality.*
+## Tech Stack
+- **Frontend**: existing React + Vite + Tailwind
+- **Backend/DB**: Supabase (PostgreSQL + Auth + Storage)
+- **State Management**: React Query (TanStack Query)
 
-### 1. Contact Form Integration
-- **Current Status**: The form simulates submission with a timeout.
-- **Recommendation**: Integrate a real email service.
-- **Options**:
-  - **EmailJS**: Client-side only, easy to setup (Free tier available).
-  - **Formspree**: Simple endpoint integration.
-  - **Netlify Forms**: If deploying to Netlify, this is zero-config.
+## 🏗️ Core Architecture
 
-### 2. Update Placeholders
-- **WhatsApp**: Update the placeholder number in `src/pages/Contact.tsx`.
-- **Maps**: Replace the static map placeholder with:
-  - An embedded Google Maps `iframe` (Simplest).
-  - Or a custom map using `@react-google-maps/api` (More control/styling).
-- **Social Links**: Ensure all footer/header social links point to real G8 Studio profiles.
+### 1. Database Schema (Supabase)
+We will create 3 main tables:
 
-### 3. SEO Basics
-- **Metadata**: Review `react-helmet-async` tags in all pages to ensure unique titles and descriptions.
-- **Manifest**: Create `public/manifest.json` for PWA capabilities or basic browser recognition.
-- **Favicon**: Ensure `public/favicon.ico` and other icon resolutions are present.
+**`partners`**
+- `id`: uuid
+- `name`: text
+- `logo_url`: text
+- `created_at`: timestamp
 
----
+**`portfolio_items`**
+- `id`: uuid
+- `title`: text
+- `category`: text (Residential, Commercial, Office, etc.)
+- `year`: text (e.g., "2024")
+- `description`: text
+- `images`: jsonb (Array of image URLs to support gallery)
+- `created_at`: timestamp
 
-## 🚀 Short-Term Improvements (Phase 2)
-*Focus on content management and user experience.*
+**`leads`** (Optional - for Contact Form)
+- `id`: uuid
+- `name`: text
+- `contact`: text
+- `message`: text
+- `status`: text (New, Contacted, Closed)
 
-### 1. Dynamic Portfolio (CMS)
-- **Problem**: Portfolio items are currently likely hardcoded in components or JSON files.
-- **Recommendation**: Move content to a Headless CMS.
-- **Tools**:
-  - **Sanity.io**: Excellent developer experience, generous free tier.
-  - **Contentful**: Industry standard, solid free tier.
-  - **Supabase**: If you prefer a SQL database approach (Postgres).
+### 2. Admin Dashboard
+A secure area for content management.
+- **Route**: `/admin`
+- **Features**:
+  - **Login Screen**: Secure email/password authentication.
+  - **Dashboard Layout**: Sidebar navigation (Portfolio, Partners, Leads).
+  - **Portfolio Manager**: Add, Edit, Delete projects. Image upload handling.
+  - **Partner Manager**: Add, Remove partner logos.
 
-### 2. Image Optimization
-- **Current**: Standard `<img>` tags are used.
-- **Recommendation**:
-  - Convert all assets to **WebP** format for smaller file sizes.
-  - Implement **Lazy Loading** explicitly for below-the-fold images.
-  - Use a `Cloudinary` or `Imgix` for on-the-fly resizing/optimization if keeping valid CMS.
+## � Step-by-Step Implementation
 
----
+### Step 1: Supabase Setup
+- [ ] Create Supabase Project
+- [ ] Set up Database Tables (`partners`, `portfolio_items`)
+- [ ] Configure Storage Buckets for images (`portfolio-images`, `partner-logos`)
+- [ ] Set up Row Level Security (RLS) policies (Public read, Admin write)
+- [ ] Install dependencies: `@supabase/supabase-js`, `@tanstack/react-query`
 
-## 🧪 Long-Term & DevOps (Phase 3)
-*Focus on scalability and maintainability.*
+### Step 2: Authentication
+- [ ] Create `AuthContext` to handle user session
+- [ ] Build Login Page (`/admin/login`)
+- [ ] Protect Admin Routes (Redirect to login if not authenticated)
 
-### 1. Testing
-- **Unit Testing**: Expand `vitest` coverage for utility functions and complex logic.
-- **E2E Testing**: Add **Playwright** or **Cypress** to test critical flows (Contact Form, Navigation).
+### Step 3: Partner Management
+- [ ] Create API service for Partners (fetch, create, delete)
+- [ ] Build Admin Partner View (List + Upload Form)
+- [ ] **Frontend Update**: Replace static Partner Carousel with dynamic fetch
 
-### 2. CI/CD Integration
-- Set up **GitHub Actions** to:
-  - Run linting (`npm run lint`) on Pull Request.
-  - Run build (`npm run build`) to catch errors early.
-  - Auto-deploy to hosting provider (Vercel/Netlify) on merge to `main`.
+### Step 4: Portfolio Management
+- [ ] Create API service for Portfolio
+- [ ] Build Admin Portfolio View (Grid List + Add/Edit Form)
+- [ ] Implement Image Upload functionality
+- [ ] **Frontend Update**: Connect main `/portfolio` page to Supabase data
 
-### 3. Analytics
-- Integrate **Google Analytics 4 (GA4)** or valid privacy-focused alternatives like **Plausible** to track user engagement.
+### Step 5: Leads & Contact (Optional)
+- [ ] Store contact form submissions in `leads` table
+- [ ] View leads in Admin Dashboard
 
----
-
-## 📝 Implementation Notes
-- **Dependencies**: Keep an eye on `package.json` size. Remove unused libraries.
-- **Code Quality**: Continue using `eslint` and `prettier` to maintain code consistency.
+## 🚀 Verification Plan
+1.  **Auth**: Try accessing `/admin` without login -> Redirected.
+2.  **CRUD**: Create a new Portfolio item -> Verify it appears on the public `/portfolio` page.
+3.  **Storage**: Upload an image -> Verify it loads correctly from the CDN.
+4.  **Responsive**: Ensure Admin Dashboard works on tablet/mobile for on-the-go updates.

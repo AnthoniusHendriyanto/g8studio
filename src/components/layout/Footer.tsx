@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logoImage from '@/assets/logo.png';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -9,6 +10,7 @@ const Footer = () => {
   const quickLinks = [
     { href: '/', label: t.nav.home },
     { href: '/services', label: t.nav.services },
+    { href: '/portfolio', label: 'Portfolio' },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact },
   ];
@@ -20,17 +22,19 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-secondary text-foreground">
       <div className="container-max section-padding !py-12 lg:!py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
-              <span className="text-2xl font-bold tracking-tight">
-                G8<span className="text-accent">.</span>Studio
-              </span>
+              <img
+                src={logoImage}
+                alt="G8 Studio"
+                className="h-8 w-auto object-contain"
+              />
             </Link>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               {t.footer.description}
             </p>
           </div>
@@ -43,7 +47,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+                    className="text-sm text-muted-foreground hover:text-accent transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -58,7 +62,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
-                  <span className="text-sm text-primary-foreground/70">
+                  <span className="text-sm text-muted-foreground">
                     {service}
                   </span>
                 </li>
@@ -72,20 +76,30 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
-                <span className="text-sm text-primary-foreground/70">
-                  Bandung, Indonesia
+                <span className="text-sm text-muted-foreground">
+                  Ruko Magna Commercial Summarecon<br />
+                  Jalan Magna Timur Blok MC/058<br />
+                  Bandung - 40295, Jawa Barat
                 </span>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
-                <span className="text-sm text-primary-foreground/70">
-                  +62 xxx xxxx xxxx
-                </span>
+                <div className="text-sm text-muted-foreground">
+                  <div>Office: +62 22 3209 3846</div>
+                  <div className="mt-1">
+                    <div>WhatsApp (HPL Store):</div>
+                    <div>+62 811 1906 879</div>
+                  </div>
+                  <div className="mt-1">
+                    <div>WhatsApp (Arc. & Interior):</div>
+                    <div>+62 811 1966 879</div>
+                  </div>
+                </div>
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
-                <span className="text-sm text-primary-foreground/70">
-                  hello@g8studio.id
+                <span className="text-sm text-muted-foreground">
+                  cv.studiogdelapanmandiri@gmail.com
                 </span>
               </li>
             </ul>
@@ -93,13 +107,13 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-primary-foreground/10">
+        <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-sm text-muted-foreground">
               © {currentYear} G8 Studio. {t.footer.rights}
             </p>
             <div className="flex items-center space-x-4">
-              <span className="text-xs text-primary-foreground/40">
+              <span className="text-xs text-muted-foreground/60">
                 Interior Design & HPL Material Partner
               </span>
             </div>
