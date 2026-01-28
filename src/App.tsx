@@ -14,32 +14,50 @@ import Links from "./pages/Links";
 import NotFound from "./pages/NotFound";
 import Analytics from "./components/Analytics";
 import ScrollToTop from "./components/ScrollToTop";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import Login from "./pages/admin/Login";
+import AdminDashboard from "./pages/admin/Dashboard";
+import PartnerManager from "./pages/admin/Partners";
 
 const queryClient = new QueryClient();
 
 const App = () => (
     <HelmetProvider>
         <QueryClientProvider client={queryClient}>
-            <LanguageProvider>
-                <TooltipProvider>
-                    <Toaster />
-                    <Sonner />
-                    <BrowserRouter>
-                        <ScrollToTop />
-                        <Analytics />
-                        <Routes>
-                            <Route path="/" element={<Index />} />
-                            <Route path="/services" element={<Services />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/portfolio" element={<Portfolio />} />
-                            <Route path="/links" element={<Links />} />
-                            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </BrowserRouter>
-                </TooltipProvider>
-            </LanguageProvider>
+            <AuthProvider>
+                <LanguageProvider>
+                    <TooltipProvider>
+                        <Toaster />
+                        <Sonner />
+                        <BrowserRouter>
+                            <ScrollToTop />
+                            <Analytics />
+                            <Routes>
+                                <Route path="/" element={<Index />} />
+                                <Route path="/services" element={<Services />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/portfolio" element={<Portfolio />} />
+                                <Route path="/links" element={<Links />} />
+
+                                {/* Admin Routes */}
+                                <Route path="/admin/login" element={<Login />} />
+                                <Route path="/admin" element={
+                                    <ProtectedRoute>
+                                        <AdminDashboard />
+                                    </ProtectedRoute>
+                                }>
+                                    <Route path="partners" element={<PartnerManager />} />
+                                </Route>
+
+                                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </BrowserRouter>
+                    </TooltipProvider>
+                </LanguageProvider>
+            </AuthProvider>
         </QueryClientProvider>
     </HelmetProvider>
 );

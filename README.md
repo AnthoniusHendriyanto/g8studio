@@ -17,6 +17,7 @@ A modern, responsive interior design portfolio website built with React, Vite, a
 Before you begin, ensure you have met the following requirements:
 - **Node.js**: v18.0.0 or higher
 - **npm**: v9.0.0 or higher
+- **Supabase Account**: For backend database and authentication.
 
 ## 📦 Installation
 
@@ -30,6 +31,18 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    npm install
    ```
+
+3. **Configure Environment Variables:**
+   - Copy the example environment file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Fill in your Supabase credentials in `.env`:
+     ```env
+     VITE_SUPABASE_URL=your_supabase_project_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
+   *(See `NEXT_PHASE.md` for details, or run `supabase_setup.sql` in Supabase SQL Editor)*
 
 ## 💻 Development
 
@@ -55,6 +68,8 @@ npm run preview
 ## ✨ Key Features (Phase 1 Completed)
 
 - **Premium Design:** Minimalist aesthetic with "Apple-like" animations using Framer Motion.
+- **Admin Dashboard:** Secure area (`/admin`) to manage content dynamically.
+- **Partner Management:** Dynamically add/remove partner logos via the Admin Dashboard.
 - **Interactive Portfolio:** Gallery lightbox with slideshow support for multiple project photos.
 - **WhatsApp Integration:** Direct connection for "Start Your Project" and floating chat button.
 - **Linktree Page:** Dedicated mobile-friendly links page (`/links`) for social bio.
@@ -81,5 +96,11 @@ src/
 ## 🔮 Roadmap (Phase 2 & Beyond)
 
 We are transitioning to a dynamic, database-driven application.
+
+**Current Status:**
+- [x] **Phase 1: Foundation (Completed)** - Supabase integration and Authentication.
+- [x] **Phase 2: Partner Management (Completed)** - Dynamic partner logo management.
+- [ ] **Phase 3: Portfolio Management (Next)** - Dynamic project portfolio.
+
 For the detailed implementation plan (Supabase + Admin Dashboard), please refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
 

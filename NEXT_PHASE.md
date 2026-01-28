@@ -46,24 +46,24 @@ A secure area for content management.
 
 ## � Step-by-Step Implementation
 
-### Step 1: Supabase Setup
-- [ ] Create Supabase Project
-- [ ] Set up Database Tables (`partners`, `portfolio_items`)
-- [ ] Configure Storage Buckets for images (`portfolio-images`, `partner-logos`)
-- [ ] Set up Row Level Security (RLS) policies (Public read, Admin write)
-- [ ] Install dependencies: `@supabase/supabase-js`, `@tanstack/react-query`
+### Step 1: Supabase Setup (✅ Completed)
+- [x] Create Supabase Project
+- [x] Set up Database Tables (`partners` created, `portfolio_items` pending)
+- [x] Configure Storage Buckets for images (`portfolio-images`, `partner-logos`)
+- [x] Set up Row Level Security (RLS) policies (Public read, Admin write)
+- [x] Install dependencies: `@supabase/supabase-js`, `@tanstack/react-query`
 
-### Step 2: Authentication
-- [ ] Create `AuthContext` to handle user session
-- [ ] Build Login Page (`/admin/login`)
-- [ ] Protect Admin Routes (Redirect to login if not authenticated)
+### Step 2: Authentication (✅ Completed)
+- [x] Create `AuthContext` to handle user session
+- [x] Build Login Page (`/admin/login`)
+- [x] Protect Admin Routes (Redirect to login if not authenticated)
 
-### Step 3: Partner Management
-- [ ] Create API service for Partners (fetch, create, delete)
-- [ ] Build Admin Partner View (List + Upload Form)
-- [ ] **Frontend Update**: Replace static Partner Carousel with dynamic fetch
+### Step 3: Partner Management (✅ Completed)
+- [x] Create API service for Partners (fetch, create, delete)
+- [x] Build Admin Partner View (List + Upload Form)
+- [x] **Frontend Update**: Replace static Partner Carousel with dynamic fetch
 
-### Step 4: Portfolio Management
+### Step 4: Portfolio Management (👉 NEXT FOCUS)
 - [ ] Create API service for Portfolio
 - [ ] Build Admin Portfolio View (Grid List + Add/Edit Form)
 - [ ] Implement Image Upload functionality

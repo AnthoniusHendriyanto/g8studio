@@ -5,6 +5,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import CTASection from '@/components/home/CTASection';
+import { useQuery } from '@tanstack/react-query';
+import { partnerService } from '@/services/partners';
 
 const About = () => {
   const { t } = useLanguage();
@@ -81,17 +83,17 @@ const About = () => {
               <div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-6">Our Story</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  G8 Studio began with a simple belief: every space has the potential to inspire. 
+                  G8 Studio began with a simple belief: every space has the potential to inspire.
                   Founded in Bandung, we started as a small interior design consultancy with big dreams.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Over the years, we've grown into a comprehensive interior solutions provider, 
-                  combining creative design expertise with access to premium surface materials 
+                  Over the years, we've grown into a comprehensive interior solutions provider,
+                  combining creative design expertise with access to premium surface materials
                   through our partnership with leading brands like TACO.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Today, we're proud to have transformed hundreds of spaces across West Java, 
-                  from cozy homes to modern offices, always staying true to our commitment 
+                  Today, we're proud to have transformed hundreds of spaces across West Java,
+                  from cozy homes to modern offices, always staying true to our commitment
                   to quality and client satisfaction.
                 </p>
               </div>
@@ -140,8 +142,8 @@ const About = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To be the leading interior design and material partner in Indonesia, 
-                  known for transforming spaces into inspiring environments that enhance 
+                  To be the leading interior design and material partner in Indonesia,
+                  known for transforming spaces into inspiring environments that enhance
                   the quality of life.
                 </p>
               </motion.div>
@@ -158,8 +160,8 @@ const About = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To deliver exceptional interior solutions by combining creative design, 
-                  premium materials, and dedicated craftsmanship, while building lasting 
+                  To deliver exceptional interior solutions by combining creative design,
+                  premium materials, and dedicated craftsmanship, while building lasting
                   relationships with our clients and partners.
                 </p>
               </motion.div>
@@ -224,16 +226,46 @@ const About = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-12 opacity-70">
-              <div className="text-3xl font-bold tracking-widest text-foreground">TACO</div>
-              <div className="text-2xl font-semibold tracking-wide text-foreground">HPL Premium</div>
-              <div className="text-2xl font-semibold tracking-wide text-foreground">Surface Pro</div>
+            <div className="flex flex-wrap items-center justify-center gap-12 opacity-80 min-h-[60px]">
+              <AboutPartnerLogos />
             </div>
           </div>
         </SectionWrapper>
 
         <CTASection />
       </Layout>
+    </>
+  );
+};
+
+const AboutPartnerLogos = () => {
+  const { data: partners, isLoading } = useQuery({
+    queryKey: ['partners'],
+    queryFn: partnerService.fetchPartners,
+  });
+
+  if (isLoading) return <div className="text-sm text-gray-400">Loading...</div>;
+
+  if (partners && partners.length > 0) {
+    return (
+      <>
+        {partners.map((partner) => (
+          <img
+            key={partner.id}
+            src={partner.logo_url}
+            alt={partner.name}
+            title={partner.name}
+            className="h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+          />
+        ))}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="text-3xl font-bold tracking-widest text-foreground">TACO</div>
+      <div className="text-2xl font-semibold tracking-wide text-foreground">HPL Premium</div>
     </>
   );
 };

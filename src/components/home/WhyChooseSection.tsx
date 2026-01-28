@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Users, Award, Wrench, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SectionWrapper from '@/components/ui/SectionWrapper';
+import { useQuery } from '@tanstack/react-query';
+import { partnerService } from '@/services/partners';
 
 const icons = [Users, Award, Wrench, MapPin];
 
@@ -49,16 +51,47 @@ const WhyChooseSection = () => {
         {/* Partner Brand Highlight */}
         <div className="mt-16 pt-12 border-t border-border">
           <div className="text-center">
-            <p className="text-muted-foreground mb-6">Official Partner of Leading Brands</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-              <div className="text-2xl font-bold tracking-widest text-foreground">TACO</div>
-              <div className="text-xl font-semibold tracking-wide text-foreground">HPL Partner</div>
-              <div className="text-xl font-semibold tracking-wide text-foreground">Premium Materials</div>
-            </div>
+            <p className="text-muted-foreground mb-8">Official Partner of Leading Brands</p>
+
+            <PartnerLogos />
+
           </div>
         </div>
       </div>
     </SectionWrapper>
+  );
+};
+
+const PartnerLogos = () => {
+  const { data: partners, isLoading } = useQuery({
+    queryKey: ['partners'],
+    queryFn: partnerService.fetchPartners,
+  });
+
+  if (isLoading) return <div className="text-sm text-gray-400">Loading partners...</div>;
+
+  if (partners && partners.length > 0) {
+    return (
+      <div className="flex flex-wrap items-center justify-center gap-12 opacity-80">
+        {partners.map((partner) => (
+          <img
+            key={partner.id}
+            src={partner.logo_url}
+            alt={partner.name}
+            title={partner.name}
+            className="h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // Fallback if no partners yet (to maintain layout)
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-12 opacity-60">
+      <div className="text-2xl font-bold tracking-widest text-foreground">TACO</div>
+      <div className="text-xl font-semibold tracking-wide text-foreground">HPL</div>
+    </div>
   );
 };
 
