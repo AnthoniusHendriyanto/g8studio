@@ -1,88 +1,12 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
+import { portfolioService } from '@/services/portfolio';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
+import { Loader2 } from 'lucide-react';
 
-// Mock data - will be replaced with DB data in Phase 2
-const MOCK_PORTFOLIO = [
-    {
-        id: 1,
-        title: 'Modern Office Interior',
-        category: 'Office',
-        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80',
-            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
-            'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80',
-        ],
-        year: '2024',
-        description: 'A collaborative workspace designed for productivity and comfort.',
-    },
-    {
-        id: 2,
-        title: 'Luxury Home Design',
-        category: 'Residential',
-        image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1200&q=80',
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-            'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
-        ],
-        year: '2024',
-        description: 'Modern luxury living with open spaces and natural light.',
-    },
-    {
-        id: 3,
-        title: 'Minimalist Apartment',
-        category: 'Residential',
-        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-        ],
-        year: '2023',
-        description: 'Clean lines and functional design for urban living.',
-    },
-    {
-        id: 4,
-        title: 'Corporate Workspace',
-        category: 'Office',
-        image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
-            'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80',
-        ],
-        year: '2023',
-        description: 'Professional environment tailored for corporate needs.',
-    },
-    {
-        id: 5,
-        title: 'Boutique Store',
-        category: 'Commercial',
-        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80',
-            'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1200&q=80',
-        ],
-        year: '2024',
-        description: 'Retail space optimized for customer experience.',
-    },
-    {
-        id: 6,
-        title: 'Contemporary Villa',
-        category: 'Residential',
-        image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-        images: [
-            'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
-            'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
-        ],
-        year: '2023',
-        description: 'Seamless indoor-outdoor living with modern aesthetics.',
-    },
-];
-
-const CATEGORIES = ['All', 'Office', 'Residential', 'Commercial'];
 
 // Image Gallery Modal Component
 const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void }) => {
@@ -190,15 +114,21 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void 
                         <dl className="space-y-2 text-sm">
                             <div className="flex justify-between">
                                 <dt className="text-muted-foreground">Location</dt>
-                                <dd className="font-medium">Bandung, Indonesia</dd>
+                                <dd className="font-medium">{project.location || 'Bandung, Indonesia'}</dd>
                             </div>
                             <div className="flex justify-between">
                                 <dt className="text-muted-foreground">Client</dt>
-                                <dd className="font-medium">Private Client</dd>
+                                <dd className="font-medium">{project.client || 'Private Client'}</dd>
                             </div>
-                            <div className="flex justify-between">
+                            <div className="flex justify-between items-center">
                                 <dt className="text-muted-foreground">Status</dt>
-                                <dd className="font-medium text-green-600">Completed</dd>
+                                <dd className={`font-medium px-2 py-0.5 rounded text-xs ${project.status === 'Completed' ? 'bg-green-100 text-green-700' :
+                                        project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                                            project.status === 'Concept' ? 'bg-amber-100 text-amber-700' :
+                                                'text-green-600'
+                                    }`}>
+                                    {project.status || 'Completed'}
+                                </dd>
                             </div>
                         </dl>
                     </div>
@@ -212,10 +142,19 @@ const Portfolio = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [selectedProject, setSelectedProject] = useState<any>(null);
 
+    // Fetch projects from Supabase
+    const { data: projects, isLoading } = useQuery({
+        queryKey: ['portfolio'],
+        queryFn: portfolioService.fetchProjects,
+    });
+
+    // Extract unique categories from projects
+    const categories = ['All', ...Array.from(new Set(projects?.map(p => p.category) || []))];
+
     const filteredPortfolio =
         selectedCategory === 'All'
-            ? MOCK_PORTFOLIO
-            : MOCK_PORTFOLIO.filter((item) => item.category === selectedCategory);
+            ? (projects || [])
+            : (projects || []).filter((item) => item.category === selectedCategory);
 
     return (
         <>
@@ -275,7 +214,7 @@ const Portfolio = () => {
                             viewport={{ once: true }}
                             className="flex flex-wrap justify-center gap-3 mb-12"
                         >
-                            {CATEGORIES.map((category) => (
+                            {categories.map((category) => (
                                 <button
                                     key={category}
                                     onClick={() => setSelectedCategory(category)}
@@ -289,39 +228,48 @@ const Portfolio = () => {
                             ))}
                         </motion.div>
 
+                        {/* Loading State */}
+                        {isLoading && (
+                            <div className="flex items-center justify-center p-12">
+                                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                            </div>
+                        )}
+
                         {/* Portfolio Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                            {filteredPortfolio.map((item, index) => (
-                                <motion.div
-                                    key={item.id}
-                                    layoutId={`project-${item.id}`}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ y: -8 }}
-                                    className="group cursor-pointer"
-                                    onClick={() => setSelectedProject(item)}
-                                >
-                                    <div className="relative overflow-hidden rounded-xl bg-muted aspect-[4/3] shadow-md hover:shadow-xl transition-all">
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 transition-opacity duration-300">
-                                            <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 transition-transform duration-300">
-                                                <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-xs font-medium mb-3 shadow-sm">
-                                                    {item.category}
-                                                </span>
-                                                <h3 className="text-xl font-bold mb-1 text-white drop-shadow-md">{item.title}</h3>
-                                                <p className="text-sm text-white/90 font-medium">{item.year}</p>
+                        {!isLoading && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                {filteredPortfolio.map((item, index) => (
+                                    <motion.div
+                                        key={item.id}
+                                        layoutId={`project-${item.id}`}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        viewport={{ once: true }}
+                                        whileHover={{ y: -8 }}
+                                        className="group cursor-pointer"
+                                        onClick={() => setSelectedProject(item)}
+                                    >
+                                        <div className="relative overflow-hidden rounded-xl bg-muted aspect-[4/3] shadow-md hover:shadow-xl transition-all">
+                                            <img
+                                                src={item.images[0]}
+                                                alt={item.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 transition-opacity duration-300">
+                                                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 transition-transform duration-300">
+                                                    <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-xs font-medium mb-3 shadow-sm">
+                                                        {item.category}
+                                                    </span>
+                                                    <h3 className="text-xl font-bold mb-1 text-white drop-shadow-md">{item.title}</h3>
+                                                    <p className="text-sm text-white/90 font-medium">{item.year}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
 
                         {/* Empty State */}
                         {filteredPortfolio.length === 0 && (

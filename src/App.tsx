@@ -19,6 +19,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Login from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/Dashboard";
 import PartnerManager from "./pages/admin/Partners";
+import PortfolioManager from "./pages/admin/PortfolioPage";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
                                     </ProtectedRoute>
                                 }>
                                     <Route path="partners" element={<PartnerManager />} />
+                                    <Route path="portfolio" element={<PortfolioManager />} />
                                 </Route>
 
                                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

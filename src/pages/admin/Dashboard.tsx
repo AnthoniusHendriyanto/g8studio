@@ -46,11 +46,12 @@ export default function Dashboard() {
                             </Button>
                         </Link>
 
-                        {/* Placeholder for future Portfolio */}
-                        <Button variant="ghost" className="w-full justify-start opacity-50 cursor-not-allowed">
-                            <FolderOpen className="w-4 h-4 mr-2" />
-                            Portfolio (Phase 3)
-                        </Button>
+                        <Link to="/admin/portfolio">
+                            <Button variant={isActive('/admin/portfolio') ? "secondary" : "ghost"} className="w-full justify-start">
+                                <FolderOpen className="w-4 h-4 mr-2" />
+                                Portfolio
+                            </Button>
+                        </Link>
                     </div>
                 </aside>
 
