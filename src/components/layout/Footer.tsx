@@ -1,24 +1,22 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import logoImage from '@/assets/logo.png';
 
 const Footer = () => {
-  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { href: '/', label: t.nav.home },
-    { href: '/services', label: t.nav.services },
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/about', label: t.nav.about },
-    { href: '/contact', label: t.nav.contact },
+    { href: '/about', label: 'About Us' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   const services = [
-    t.services.items[0].title,
-    t.services.items[1].title,
-    t.services.items[2].title,
+    'Interior Design Consultation',
+    'Custom Furniture & Built-in',
+    'HPL & Surface Materials',
   ];
 
   return (
@@ -35,13 +33,13 @@ const Footer = () => {
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              {t.footer.description}
+              {'Premium interior design solutions and high-quality HPL materials for your dream space.'}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">{t.footer.quickLinks}</h4>
+            <h4 className="font-semibold mb-4">{'Quick Links'}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -58,7 +56,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold mb-4">{t.footer.services}</h4>
+            <h4 className="font-semibold mb-4">{'Services'}</h4>
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
@@ -72,7 +70,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">{t.footer.contact}</h4>
+            <h4 className="font-semibold mb-4">{'Contact'}</h4>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
@@ -110,7 +108,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} G8 Studio. {t.footer.rights}
+              © {currentYear} G8 Studio. {'All rights reserved.'}
             </p>
             <div className="flex items-center space-x-4">
               <span className="text-xs text-muted-foreground/60">

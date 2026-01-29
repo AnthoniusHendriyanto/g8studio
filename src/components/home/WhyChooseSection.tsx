@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Users, Award, Wrench, MapPin } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { useQuery } from '@tanstack/react-query';
 import { partnerService } from '@/services/partners';
@@ -8,7 +7,24 @@ import { partnerService } from '@/services/partners';
 const icons = [Users, Award, Wrench, MapPin];
 
 const WhyChooseSection = () => {
-  const { t } = useLanguage();
+  const items = [
+    {
+      title: 'Expert Team',
+      description: 'Skilled designers and craftsmen with years of industry experience.',
+    },
+    {
+      title: 'Premium Materials',
+      description: 'Official partner of TACO and other leading HPL brands.',
+    },
+    {
+      title: 'End-to-End Service',
+      description: 'From concept design to material supply and installation.',
+    },
+    {
+      title: 'Local Expertise',
+      description: 'Deep understanding of Bandung market and client preferences.',
+    },
+  ];
 
   return (
     <SectionWrapper className="section-padding bg-background">
@@ -16,16 +32,16 @@ const WhyChooseSection = () => {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-            {t.whyChoose.label}
+            Why G8 Studio
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-            {t.whyChoose.title}
+            Your Trusted Interior Partner
           </h2>
         </div>
 
         {/* Features Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {t.whyChoose.items.map((item, index) => {
+          {items.map((item, index) => {
             const Icon = icons[index];
             return (
               <motion.div

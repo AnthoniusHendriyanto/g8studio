@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-interior.jpg';
 
 const HeroSection = () => {
-  const { t } = useLanguage();
-
   const scrollToContent = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
@@ -43,7 +40,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-6"
           >
-            {t.hero.headline}
+            Designing Dreams, Building Reality
           </motion.h1>
 
           <motion.p
@@ -52,7 +49,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg sm:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0"
           >
-            {t.hero.subheadline}
+            Premium interior design solutions and high-quality HPL materials for residential and commercial spaces in Bandung.
           </motion.p>
 
           <motion.div
@@ -63,12 +60,12 @@ const HeroSection = () => {
           >
             <Button asChild size="lg" variant="accent" className="min-w-[180px]">
               <Link to="/services">
-                {t.hero.cta_services}
+                View Services
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline-hero" className="min-w-[180px]">
-              <Link to="/contact">{t.hero.cta_contact}</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </motion.div>
         </div>

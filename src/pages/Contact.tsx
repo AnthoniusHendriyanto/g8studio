@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { Button } from '@/components/ui/button';
@@ -12,7 +11,6 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
-  const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -76,13 +74,13 @@ const Contact = () => {
               className="max-w-3xl"
             >
               <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-                {t.contact.label}
+                Get in Touch
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                {t.contact.title}
+                Contact Us
               </h1>
               <p className="text-xl text-muted-foreground">
-                {t.contact.description}
+                Have a project in mind? We'd love to hear from you.
               </p>
             </motion.div>
           </div>
@@ -102,12 +100,12 @@ const Contact = () => {
                 <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">{t.contact.form.name}</Label>
+                    <Label htmlFor="name">Full Name</Label>
                     <Input
                       id="name"
                       name="name"
                       type="text"
-                      placeholder={t.contact.form.namePlaceholder}
+                      placeholder="Enter your name"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -117,12 +115,12 @@ const Contact = () => {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">{t.contact.form.email}</Label>
+                      <Label htmlFor="email">Email Address</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder={t.contact.form.emailPlaceholder}
+                        placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -130,12 +128,12 @@ const Contact = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">{t.contact.form.phone}</Label>
+                      <Label htmlFor="phone">Phone Number</Label>
                       <Input
                         id="phone"
                         name="phone"
                         type="tel"
-                        placeholder={t.contact.form.phonePlaceholder}
+                        placeholder="Enter your phone number"
                         value={formData.phone}
                         onChange={handleChange}
                         className="h-12"
@@ -144,11 +142,11 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">{t.contact.form.message}</Label>
+                    <Label htmlFor="message">Your Message</Label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder={t.contact.form.messagePlaceholder}
+                      placeholder="Tell us about your project..."
                       value={formData.message}
                       onChange={handleChange}
                       required
@@ -158,7 +156,7 @@ const Contact = () => {
                   </div>
 
                   <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
-                    {isSubmitting ? 'Sending...' : t.contact.form.submit}
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     <Send className="ml-2 w-4 h-4" />
                   </Button>
                 </form>

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 
@@ -12,18 +11,17 @@ const stats = [
 ];
 
 const AboutPreview = () => {
-  const { t } = useLanguage();
 
   const getStatLabel = (key: string) => {
     switch (key) {
       case 'experience':
-        return t.about.experience;
+        return 'Years of Experience';
       case 'projects':
-        return t.about.projects;
+        return 'Projects Completed';
       case 'clients':
-        return t.about.clients;
+        return 'Happy Clients';
       case 'partners':
-        return t.about.partners;
+        return 'Partner Brands';
       default:
         return '';
     }
@@ -36,17 +34,17 @@ const AboutPreview = () => {
           {/* Content */}
           <div>
             <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-              {t.about.label}
+              About G8 Studio
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              {t.about.title}
+              Crafting Exceptional Spaces Since Day One
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              {t.about.description}
+              G8 Studio is your trusted partner for interior design and premium surface materials. Based in Bandung, we combine creative vision with quality craftsmanship to transform spaces into extraordinary experiences.
             </p>
             <Button asChild variant="default">
               <Link to="/about">
-                {t.nav.about}
+                About Us
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>

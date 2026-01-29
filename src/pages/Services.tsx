@@ -10,7 +10,6 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { Button } from '@/components/ui/button';
@@ -19,7 +18,32 @@ import CTASection from '@/components/home/CTASection';
 const icons = [Palette, Sofa, Layers, Home, Building2, FileText];
 
 const Services = () => {
-  const { t } = useLanguage();
+  const services = [
+    {
+      title: 'Interior Design Consultation',
+      description: 'Expert guidance to bring your vision to life with personalized design concepts.',
+    },
+    {
+      title: 'Custom Furniture & Built-in',
+      description: 'Bespoke furniture solutions tailored to your space and lifestyle needs.',
+    },
+    {
+      title: 'HPL & Surface Materials',
+      description: 'Premium HPL, PVC board, and surface materials from trusted partner brands.',
+    },
+    {
+      title: 'Residential Projects',
+      description: 'Complete interior solutions for homes, apartments, and residential complexes.',
+    },
+    {
+      title: 'Commercial Projects',
+      description: 'Professional interior design for offices, retail spaces, and hospitality.',
+    },
+    {
+      title: 'Material Consultation',
+      description: 'Expert advice on selecting the right materials for your project needs.',
+    },
+  ];
 
   return (
     <>
@@ -51,13 +75,13 @@ const Services = () => {
               className="max-w-3xl"
             >
               <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-                {t.services.label}
+                Our Services
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                {t.services.title}
+                Comprehensive Interior Solutions
               </h1>
               <p className="text-xl text-muted-foreground">
-                {t.services.description}
+                From concept to completion, we provide end-to-end interior design and material supply services.
               </p>
             </motion.div>
           </div>
@@ -67,7 +91,7 @@ const Services = () => {
         <SectionWrapper className="section-padding bg-background">
           <div className="container-max">
             <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-              {t.services.items.map((service, index) => {
+              {services.map((service, index) => {
                 const Icon = icons[index];
                 return (
                   <motion.div
@@ -103,18 +127,18 @@ const Services = () => {
           <div className="container-max">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-                {t.materials.label}
+                Premium Materials
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                {t.materials.title}
+                Quality Surface Solutions
               </h2>
               <p className="text-muted-foreground text-lg">
-                {t.materials.description}
+                We partner with leading brands to deliver the finest surface materials.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {t.materials.items.map((material, index) => (
+              {['HPL Panels', 'PVC Board', 'Decorative Laminates', 'Wood Veneer'].map((material, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}

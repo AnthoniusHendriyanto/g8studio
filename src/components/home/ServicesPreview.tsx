@@ -9,14 +9,26 @@ import {
   FileText,
   ArrowRight,
 } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 
 const icons = [Palette, Sofa, Layers, Home, Building2, FileText];
 
 const ServicesPreview = () => {
-  const { t } = useLanguage();
+  const services = [
+    {
+      title: 'Interior Design Consultation',
+      description: 'Expert guidance to bring your vision to life with personalized design concepts.',
+    },
+    {
+      title: 'Custom Furniture & Built-in',
+      description: 'Bespoke furniture solutions tailored to your space and lifestyle needs.',
+    },
+    {
+      title: 'HPL & Surface Materials',
+      description: 'Premium HPL, PVC board, and surface materials from trusted partner brands.',
+    },
+  ];
 
   return (
     <SectionWrapper className="section-padding bg-secondary">
@@ -24,19 +36,19 @@ const ServicesPreview = () => {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-            {t.services.label}
+            Our Services
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            {t.services.title}
+            Comprehensive Interior Solutions
           </h2>
           <p className="text-muted-foreground text-lg">
-            {t.services.description}
+            From concept to completion, we provide end-to-end interior design and material supply services.
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {t.services.items.map((service, index) => {
+          {services.map((service, index) => {
             const Icon = icons[index];
             return (
               <motion.div
@@ -63,7 +75,7 @@ const ServicesPreview = () => {
         <div className="text-center mt-12">
           <Button asChild variant="default" size="lg">
             <Link to="/services">
-              {t.nav.services}
+              View Services
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>

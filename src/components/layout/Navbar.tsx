@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoImage from '@/assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
@@ -21,16 +19,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '/', label: t.nav.home },
-    { href: '/services', label: t.nav.services },
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/about', label: t.nav.about },
-    { href: '/contact', label: t.nav.contact },
+    { href: '/about', label: 'About Us' },
+    { href: '/contact', label: 'Contact' },
   ];
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'id' : 'en');
-  };
 
   return (
     <header
@@ -66,18 +60,10 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Language Switcher & CTA */}
+          {/* CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Toggle language"
-            >
-              <Globe className="w-4 h-4" />
-              <span className="uppercase font-medium">{language}</span>
-            </button>
             <Button asChild variant="default" size="sm">
-              <Link to="/contact">{t.hero.cta_contact}</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
 
@@ -115,15 +101,6 @@ const Navbar = () => {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-4 border-t border-border">
-                  <button
-                    onClick={toggleLanguage}
-                    className="flex items-center space-x-2 text-muted-foreground"
-                  >
-                    <Globe className="w-4 h-4" />
-                    <span>{language === 'en' ? 'English' : 'Indonesia'}</span>
-                  </button>
-                </div>
               </div>
             </motion.div>
           )}

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Target, Eye, Award, Users } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import CTASection from '@/components/home/CTASection';
@@ -9,7 +8,6 @@ import { useQuery } from '@tanstack/react-query';
 import { partnerService } from '@/services/partners';
 
 const About = () => {
-  const { t } = useLanguage();
 
   const timeline = [
     {
@@ -64,13 +62,13 @@ const About = () => {
               className="max-w-3xl"
             >
               <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
-                {t.about.label}
+                About G8 Studio
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                {t.about.title}
+                Crafting Exceptional Spaces Since Day One
               </h1>
               <p className="text-xl text-muted-foreground">
-                {t.about.description}
+                G8 Studio is your trusted partner for interior design and premium surface materials. Based in Bandung, we combine creative vision with quality craftsmanship to transform spaces into extraordinary experiences.
               </p>
             </motion.div>
           </div>
