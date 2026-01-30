@@ -22,7 +22,17 @@ This file contains all remaining manual steps required to fully configure the G8
 - [ ] **Social Media Preview**: 
   - Create a 1200x630px image and save it as `public/og-image.jpg` for high-quality sharing previews.
 
-## 🔐 Priority: Supabase Backend
+## 🔐 Priority: Supabase Backend & Credentials
+- [ ] **Supabase Credentials**: 
+  - Update your `.env` file with the correct production values:
+    - `VITE_SUPABASE_URL=your_project_url`
+    - `VITE_SUPABASE_ANON_KEY=your_anon_key`
+- [ ] **Database Schema & Configuration**:
+  - Run the SQL script found in `supabase_complete_setup.sql` in your Supabase SQL Editor.
+  - This will create all necessary tables: `partner_logos`, `portfolio_items`, and `profiles`.
+- [ ] **Storage Buckets**: 
+  - Create two **Public** buckets: `partner-logos` and `portfolio-images`.
+  - Ensure RLS policies allow authenticated `INSERT/UPDATE/DELETE` and public `SELECT`.
 - [ ] **Auth Site URL**: 
   - In Supabase Dashboard > Authentication > URL Configuration: Update **Site URL** to your production domain.
 - [ ] **Email Templates**: 
