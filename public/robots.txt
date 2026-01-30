@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Disallow admin routes
+Disallow: /admin/
+Disallow: /admin/*
+
+# TODO: Verify Sitemap URL inside is correct for hosting.
+Sitemap: https://g8studio.id/sitemap.xml

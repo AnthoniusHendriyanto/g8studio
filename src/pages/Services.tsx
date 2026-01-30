@@ -62,6 +62,7 @@ const Services = () => {
           property="og:description"
           content="From concept to completion, we provide end-to-end interior design and material supply services."
         />
+        <meta property="og:url" content="https://g8studio.id/services" />
         <link rel="canonical" href="https://g8studio.id/services" />
       </Helmet>
       <Layout>

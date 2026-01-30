@@ -173,8 +173,13 @@ We are transitioning to a dynamic, database-driven application.
 - [/] **Phase 5: Growth & Hardening (In Progress)**
     - [x] Functional Contact Form (EmailJS) with branded templates.
     - [x] Security & Auth UX Hardening (Generic errors, auto-focus, loading states).
-    - [ ] SEO Maximization (Sitemap, Robots.txt, Dynamic OG).
+    - [x] SEO Maximization (Sitemap, Robots.txt, Dynamic OG).
     - [ ] Dynamic Social Media Management via Admin Dashboard.
 
 For the detailed Phase 5 plan, refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
+
+---
+
+### 📋 **Important Note for Admins**
+Please refer to the **[TODO.md](./TODO.md)** for a consolidated list of manual configuration steps required for production (Analytics, Domains, Supabase, etc.).
 

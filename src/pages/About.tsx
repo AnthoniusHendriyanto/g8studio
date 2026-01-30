@@ -49,6 +49,7 @@ const About = () => {
           property="og:description"
           content="Crafting exceptional spaces since day one. Learn about our journey and vision."
         />
+        <meta property="og:url" content="https://g8studio.id/about" />
         <link rel="canonical" href="https://g8studio.id/about" />
       </Helmet>
       <Layout>

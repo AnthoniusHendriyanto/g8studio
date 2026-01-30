@@ -123,9 +123,9 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void 
                             <div className="flex justify-between items-center">
                                 <dt className="text-muted-foreground">Status</dt>
                                 <dd className={`font-medium px-2 py-0.5 rounded text-xs ${project.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                                        project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                                            project.status === 'Concept' ? 'bg-amber-100 text-amber-700' :
-                                                'text-green-600'
+                                    project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                                        project.status === 'Concept' ? 'bg-amber-100 text-amber-700' :
+                                            'text-green-600'
                                     }`}>
                                     {project.status || 'Completed'}
                                 </dd>
@@ -169,6 +169,7 @@ const Portfolio = () => {
                     property="og:description"
                     content="Browse our collection of interior design projects."
                 />
+                <meta property="og:url" content="https://g8studio.id/portfolio" />
                 <link rel="canonical" href="https://g8studio.id/portfolio" />
             </Helmet>
 

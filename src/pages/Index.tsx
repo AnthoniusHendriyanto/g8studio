@@ -24,6 +24,7 @@ const Index = () => {
           property="og:description"
           content="Premium interior design solutions and high-quality HPL materials for your dream space in Bandung."
         />
+        <meta property="og:url" content="https://g8studio.id/" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://g8studio.id" />
       </Helmet>

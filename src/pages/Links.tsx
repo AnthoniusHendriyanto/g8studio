@@ -43,6 +43,7 @@ const Links = () => {
                     content="Connect with G8 Studio - WhatsApp, Portfolio, Location, and Marketplace links."
                 />
                 <meta property="og:title" content="Links | G8 Studio" />
+                <meta property="og:url" content="https://g8studio.id/links" />
                 <link rel="canonical" href="https://g8studio.id/links" />
             </Helmet>
 

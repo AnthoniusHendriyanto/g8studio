@@ -70,6 +70,7 @@ const Contact = () => {
           property="og:description"
           content="Have a project in mind? Contact G8 Studio for a free consultation."
         />
+        <meta property="og:url" content="https://g8studio.id/contact" />
         <link rel="canonical" href="https://g8studio.id/contact" />
       </Helmet>
       <Layout>
