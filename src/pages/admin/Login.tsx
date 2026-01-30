@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/lib/supabase";
@@ -16,6 +16,12 @@ export default function Login() {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const emailInputRef = useRef<HTMLInputElement>(null);
+
+    // Auto-focus email input on mount
+    useEffect(() => {
+        emailInputRef.current?.focus();
+    }, []);
 
     // Redirect if already logged in
     if (user) {
@@ -40,7 +46,10 @@ export default function Login() {
             const from = (location.state as any)?.from?.pathname || "/admin";
             navigate(from, { replace: true });
         } catch (error: any) {
-            toast.error(error.message || "Failed to sign in");
+            // Generic error message to prevent user enumeration
+            toast.error("Invalid email or password");
+            // Clear password field for security
+            setPassword("");
         } finally {
             setLoading(false);
         }
@@ -63,6 +72,7 @@ export default function Login() {
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
                             <Input
+                                ref={emailInputRef}
                                 id="email"
                                 type="email"
                                 placeholder="admin@example.com"
@@ -72,6 +82,7 @@ export default function Login() {
                                 disabled={loading}
                             />
                         </div>
+
                         <div className="space-y-2">
                             <Label htmlFor="password">Password</Label>
                             <Input
