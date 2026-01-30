@@ -9,6 +9,7 @@ A modern, responsive interior design portfolio website built with React, Vite, a
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/)
 - **Routing:** [React Router](https://reactrouter.com/)
+- **Email:** [EmailJS](https://www.emailjs.com/) (Lead Generation)
 - **Forms:** React Hook Form + Zod Validation
 - **State Management:** React Query (Server State) + React Context (Client State)
 
@@ -66,6 +67,22 @@ Instead of running commands manually, you can run the provided SQL script which 
         *   **Public Access**: Allow `SELECT` for role `public`.
         *   **Authenticated Access**: Allow `INSERT`, `UPDATE`, `DELETE` for role `authenticated`.
 
+## 📧 Email Integration
+
+We use **EmailJS** for contact form submissions. This allows you to receive professional, branded emails directly in your inbox.
+
+1.  **Create an EmailJS account** at [emailjs.com](https://www.emailjs.com/).
+2.  **Follow the [EmailJS Setup Guide](./.gemini/antigravity/brain/19f243c3-5870-43f1-8e1c-747baef03c7a/emailjs_setup_guide.md)** to:
+    *   Connect your Gmail service.
+    *   Set up the responsive HTML email template using the example at [`src/templates/contact-email.html`](./src/templates/contact-email.html).
+    *   Configure variable mapping (`{{from_name}}`, `{{from_email}}`, etc.).
+3.  **Update your `.env` file** with the following keys:
+    ```env
+    VITE_EMAILJS_SERVICE_ID=your_service_id
+    VITE_EMAILJS_TEMPLATE_ID=your_template_id
+    VITE_EMAILJS_PUBLIC_KEY=your_public_key
+    ```
+
 ## 💻 Development
 
 Start the development server with hot-reload:
@@ -95,9 +112,10 @@ npm run preview
 - **Dynamic Portfolio:** Full CRUD management for projects including multi-image uploads, status tracking, and details.
 - **WhatsApp Integration:** Direct connection for "Start Your Project" and floating chat button.
 - **Linktree Page:** Dedicated mobile-friendly links page (`/links`) for social bio.
-- **Contact Wizard:** "Project Kickstarter" form that pre-fills WhatsApp messages.
+- **Contact Wizard:** Real functional contact form with **EmailJS** integration.
+- **Email Templates:** Mobile-responsive, professional HTML inquiries sent directly to your inbox.
 - **Location:** Embedded Google Maps integration for easier office finding.
-- **SEO Ready:** Basic meta tags and Open Graph setup.
+- **SEO Ready:** Basic meta tags, Open Graph setup, and planned sitemap.
 
 ## 🔐 Authentication Behavior
 
@@ -147,15 +165,16 @@ src/
 
 We are transitioning to a dynamic, database-driven application.
 
-**Current Status (Phase 3 Complete):**
+**Current Status (Phase 5 In Progress):**
 - [x] **Phase 1: Foundation (Completed)** - Supabase integration and Authentication.
 - [x] **Phase 2: Partner Management (Completed)** - Dynamic partner logo management.
 - [x] **Phase 3: Portfolio Management (Completed)** - Dynamic project portfolio with details and status.
-- [x] **Phase 4: Core Improvements (Completed)**
-    - Session expiration on tab close (`sessionStorage`).
-    - Removed localization (English only).
-    - Performance optimizations (Lazy loading & Code splitting).
-    - Error prevention (Error Boundaries).
+- [x] **Phase 4: Core Improvements (Completed)** - Security, localization cleanup, and performance.
+- [/] **Phase 5: Growth & Hardening (In Progress)**
+    - [x] Functional Contact Form (EmailJS) with branded templates.
+    - [ ] SEO Maximization (Sitemap, Robots.txt, Dynamic OG).
+    - [ ] Dynamic Social Media Management via Admin Dashboard.
+    - [ ] Security Hardening (Login logic, Auth re-hydration fix).
 
-For the detailed implementation plan (Supabase + Admin Dashboard), please refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
+For the detailed Phase 5 plan, refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
 

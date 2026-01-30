@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { sendContactEmail } from '@/services/email';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -28,16 +29,24 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      await sendContactEmail(formData);
 
-    toast({
-      title: 'Message Sent!',
-      description: "Thank you for contacting us. We'll get back to you soon.",
-    });
+      toast({
+        title: 'Message Sent Successfully!',
+        description: "Thank you for contacting us. We'll get back to you soon.",
+      });
 
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    setIsSubmitting(false);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      toast({
+        title: 'Failed to Send Message',
+        description: error instanceof Error ? error.message : 'Please try again later or contact us via WhatsApp.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const whatsappNumber = '62xxxxxxxxxx';
