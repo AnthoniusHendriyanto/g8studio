@@ -15,9 +15,12 @@ Based on our recent progress, Phase 5 will focus on **Business Growth** (leads a
 *   **Action**: Create a "Social Links" manager in the Admin Dashboard.
 *   **Result**: Manage your Instagram, Shopee, Tokopedia, and WhatsApp links in one place. Changes will automatically update the Footer and the Links page.
 
-## 4. 🔐 Security & Auth UX Hardening
-*   **Protection**: Improve `ProtectedRoute` loading states to prevent "layout flickering".
-*   **Validation**: Add brute-force mitigations (cooldowns) on the Login page.
+## 4. 🔐 Security & Auth UX Hardening (Completed)
+*   **Protection**: Improved `ProtectedRoute` loading states with proper spinner (prevents layout flickering).
+*   **UX Enhancement**: Auto-focus email field on login page for better accessibility.
+*   **Security**: Implemented generic error messages ("Invalid email or password") to prevent user enumeration attacks.
+*   **Security**: Password field auto-clears on failed login attempts.
+*   **UX**: Input fields properly disabled during authentication to prevent double-submission.
 
 ## 4. 📊 Admin Dashboard Evolution
 *   **Insights**: Replace the generic dashboard welcome with a **Live Stats Summary**.
