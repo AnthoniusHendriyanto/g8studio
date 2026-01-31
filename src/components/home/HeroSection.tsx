@@ -10,7 +10,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const HeroSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000, stopOnInteraction: false }),
+    Autoplay({ delay: 6000, stopOnInteraction: false }),
   ]);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -57,48 +57,48 @@ const HeroSection = () => {
     // Fallback to static hero while loading
     return (
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
-        <div className="relative z-10 container-max section-padding text-center lg:text-left">
-          <div className="max-w-3xl mx-auto lg:mx-0">
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary via-primary/80 to-primary/60" />
+        <div className="relative z-10 container-max section-padding text-center">
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.2 }}
             >
-              <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
+              <span className="inline-block mb-6 text-accent font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
                 Interior Design & HPL Material Partner
               </span>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-6"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[1.1] mb-8"
             >
               {displayTitle}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg sm:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0"
+              transition={{ duration: 1, delay: 0.6 }}
+              className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto leading-relaxed"
             >
               {displaySubtitle}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              transition={{ duration: 1, delay: 0.8 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-6"
             >
-              <Button asChild size="lg" variant="accent" className="min-w-[180px]">
-                <Link to="/services">
-                  View Services
-                  <ArrowRight className="ml-2 w-4 h-4" />
+              <Button asChild size="lg" variant="accent" className="min-w-[200px] h-14 text-base shadow-xl hover:shadow-2xl">
+                <Link to="/portfolio">
+                  Explore Projects
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline-hero" className="min-w-[180px]">
-                <Link to="/contact">Contact Us</Link>
+              <Button asChild size="lg" variant="outline-hero" className="min-w-[200px] h-14 text-base">
+                <Link to="/contact">Get in Touch</Link>
               </Button>
             </motion.div>
           </div>
@@ -107,12 +107,12 @@ const HeroSection = () => {
           onClick={scrollToContent}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+          transition={{ duration: 1, delay: 1.4 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
           aria-label="Scroll down"
         >
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            <ChevronDown className="w-8 h-8" />
+          <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2.5, repeat: Infinity }}>
+            <ChevronDown className="w-10 h-10" />
           </motion.div>
         </motion.button>
       </section>
@@ -126,26 +126,29 @@ const HeroSection = () => {
         <div className="flex h-full">
           {displaySlides.map((slide) => (
             <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative">
-              <img
+              <motion.img
+                initial={{ scale: 1 }}
+                animate={{ scale: 1.05 }}
+                transition={{ duration: 8, ease: 'easeOut' }}
                 src={slide.image_url}
                 alt={slide.title || 'Hero slide'}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/30" />
             </div>
           ))}
         </div>
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 container-max section-padding text-center lg:text-left">
-        <div className="max-w-3xl mx-auto lg:mx-0">
+      <div className="relative z-10 container-max section-padding text-center">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
+            <span className="inline-block mb-6 text-accent font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
               Interior Design & HPL Material Partner
             </span>
           </motion.div>
@@ -154,8 +157,8 @@ const HeroSection = () => {
             key={`title-${activeSlide?.id || 'static'}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-6"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8"
           >
             {displayTitle}
           </motion.h1>
@@ -164,8 +167,8 @@ const HeroSection = () => {
             key={`sub-${activeSlide?.id || 'static'}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0"
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             {displaySubtitle}
           </motion.p>
@@ -173,17 +176,17 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
-            <Button asChild size="lg" variant="accent" className="min-w-[180px]">
-              <Link to="/services">
-                View Services
-                <ArrowRight className="ml-2 w-4 h-4" />
+            <Button asChild size="lg" variant="accent" className="min-w-[200px] h-14 text-base shadow-xl hover:shadow-2xl">
+              <Link to="/portfolio">
+                Explore Projects
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline-hero" className="min-w-[180px]">
-              <Link to="/contact">Contact Us</Link>
+            <Button asChild size="lg" variant="outline-hero" className="min-w-[200px] h-14 text-base">
+              <Link to="/contact">Get in Touch</Link>
             </Button>
           </motion.div>
         </div>
@@ -194,12 +197,12 @@ const HeroSection = () => {
         onClick={scrollToContent}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+        transition={{ duration: 1, delay: 1.4 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors"
         aria-label="Scroll down"
       >
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-          <ChevronDown className="w-8 h-8" />
+        <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2.5, repeat: Infinity }}>
+          <ChevronDown className="w-10 h-10" />
         </motion.div>
       </motion.button>
     </section>

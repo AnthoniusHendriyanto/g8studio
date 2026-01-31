@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionWrapper from '@/components/ui/SectionWrapper';
@@ -30,43 +31,57 @@ const AboutPreview = () => {
   return (
     <SectionWrapper className="section-padding bg-background">
       <div className="container-max">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Content */}
-          <div>
-            <span className="inline-block mb-4 text-accent font-medium tracking-wider uppercase text-sm">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block mb-4 text-accent font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
               About G8 Studio
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
               Crafting Exceptional Spaces Since Day One
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-10">
               G8 Studio is your trusted partner for interior design and premium surface materials. Based in Bandung, we combine creative vision with quality craftsmanship to transform spaces into extraordinary experiences.
             </p>
-            <Button asChild variant="default">
+            <Button asChild variant="accent" size="lg" className="shadow-xl hover:shadow-2xl">
               <Link to="/about">
-                About Us
-                <ArrowRight className="ml-2 w-4 h-4" />
+                Learn More About Us
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 gap-6 lg:gap-8"
+          >
             {stats.map((stat, index) => (
-              <div
+              <motion.div
                 key={stat.key}
-                className="bg-card rounded-lg p-6 shadow-card hover-lift"
-                style={{ animationDelay: `${index * 100}ms` }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-secondary/30 rounded-2xl p-8 luxury-shadow hover-lift text-center"
               >
-                <span className="text-4xl lg:text-5xl font-bold text-accent">
+                <div className="text-5xl lg:text-6xl font-bold text-accent mb-3">
                   {stat.value}
-                </span>
-                <p className="text-muted-foreground mt-2">
+                </div>
+                <p className="text-sm text-muted-foreground uppercase tracking-wider">
                   {getStatLabel(stat.key)}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </SectionWrapper>
