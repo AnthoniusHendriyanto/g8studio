@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-colors hover:text-accent ${isTransparent
+                className={`text-[11px] font-medium tracking-[0.2em] uppercase transition-colors hover:text-accent ${isTransparent
                   ? 'text-white/90 hover:text-white'
                   : location.pathname === link.href
                     ? 'text-accent'
