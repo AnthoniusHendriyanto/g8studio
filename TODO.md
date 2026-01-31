@@ -29,9 +29,9 @@ This file contains all remaining manual steps required to fully configure the G8
     - `VITE_SUPABASE_ANON_KEY=your_anon_key`
 - [ ] **Database Schema & Configuration**:
   - Run the SQL script found in `supabase_complete_setup.sql` in your Supabase SQL Editor.
-  - This will create all necessary tables: `partner_logos`, `portfolio_items`, and `profiles`.
+  - This will create all necessary tables: `partner_logos`, `portfolio_items`, `profiles`, `hero_slides`, and `quick_links`.
 - [ ] **Storage Buckets**: 
-  - Create two **Public** buckets: `partner-logos` and `portfolio-images`.
+  - Create **Public** buckets: `partner-logos`, `portfolio-images`, and `hero-images`.
   - Ensure RLS policies allow authenticated `INSERT/UPDATE/DELETE` and public `SELECT`.
 - [ ] **Auth Site URL**: 
   - In Supabase Dashboard > Authentication > URL Configuration: Update **Site URL** to your production domain.

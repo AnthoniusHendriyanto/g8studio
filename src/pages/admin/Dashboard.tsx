@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, Handshake, FolderOpen } from "lucide-react";
+import { LogOut, LayoutDashboard, Handshake, FolderOpen, Image, Link2 } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 export default function Dashboard() {
@@ -50,6 +50,20 @@ export default function Dashboard() {
                             <Button variant={isActive('/admin/portfolio') ? "secondary" : "ghost"} className="w-full justify-start">
                                 <FolderOpen className="w-4 h-4 mr-2" />
                                 Portfolio
+                            </Button>
+                        </Link>
+
+                        <Link to="/admin/hero">
+                            <Button variant={isActive('/admin/hero') ? "secondary" : "ghost"} className="w-full justify-start">
+                                <Image className="w-4 h-4 mr-2" />
+                                Hero Slider
+                            </Button>
+                        </Link>
+
+                        <Link to="/admin/links">
+                            <Button variant={isActive('/admin/links') ? "secondary" : "ghost"} className="w-full justify-start">
+                                <Link2 className="w-4 h-4 mr-2" />
+                                Quick Links
                             </Button>
                         </Link>
                     </div>

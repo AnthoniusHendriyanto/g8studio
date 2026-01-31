@@ -23,6 +23,8 @@ const Login = lazy(() => import("./pages/admin/Login"));
 const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
 const PartnerManager = lazy(() => import("./pages/admin/Partners"));
 const PortfolioManager = lazy(() => import("./pages/admin/PortfolioPage"));
+const HeroManager = lazy(() => import("./pages/admin/HeroManager"));
+const LinkManager = lazy(() => import("./pages/admin/LinkManager"));
 
 const queryClient = new QueryClient();
 
@@ -59,6 +61,8 @@ const App = () => (
                                     }>
                                         <Route path="partners" element={<PartnerManager />} />
                                         <Route path="portfolio" element={<PortfolioManager />} />
+                                        <Route path="hero" element={<HeroManager />} />
+                                        <Route path="links" element={<LinkManager />} />
                                     </Route>
 
                                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

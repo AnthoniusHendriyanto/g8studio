@@ -62,10 +62,10 @@ Instead of running commands manually, you can run the provided SQL script which 
 3.  **Configure Storage Buckets (Manual Step)**:
     Since storage policies must often be set via the UI, follow these steps in the Supabase Dashboard:
 
-    *   **Go to Storage** and create two **Public** buckets: `partner-logos` and `portfolio-images`.
+    *   **Go to Storage** and create three **Public** buckets: `partner-logos`, `portfolio-images`, and `hero-images`.
     *   **For each bucket**, go to the **Policies** tab and add:
         *   **Public Access**: Allow `SELECT` for role `public`.
-        *   **Authenticated Access**: Allow `INSERT`, `UPDATE`, `DELETE` for role `authenticated`.
+        *   **Authenticated Access**: Allow all operations (`INSERT`, `UPDATE`, `DELETE`, `SELECT`) for role `authenticated`.
 
 ## 📧 Email Integration
 
@@ -107,15 +107,17 @@ npm run preview
 ## ✨ Key Features
 
 - **Premium Design:** Minimalist aesthetic with "Apple-like" animations using Framer Motion.
+- **Dynamic Hero Slider:** Auto-sliding homepage background with customizable overlays and randomized transitions.
+- **Quick Links Manager:** Linktree-style page (`/links`) fully manageable from the dashboard with GA tracking.
 - **Admin Dashboard:** Secure area (`/admin`) to manage content dynamically.
 - **Partner Management:** Dynamically add/remove partner logos via the Admin Dashboard.
 - **Dynamic Portfolio:** Full CRUD management for projects including multi-image uploads, status tracking, and details.
 - **WhatsApp Integration:** Direct connection for "Start Your Project" and floating chat button.
-- **Linktree Page:** Dedicated mobile-friendly links page (`/links`) for social bio.
 - **Contact Wizard:** Real functional contact form with **EmailJS** integration.
 - **Email Templates:** Mobile-responsive, professional HTML inquiries sent directly to your inbox.
 - **Location:** Embedded Google Maps integration for easier office finding.
-- **SEO Ready:** Basic meta tags, Open Graph setup, and planned sitemap.
+- **SEO Maximized:** Full `sitemap.xml`, `robots.txt`, and synchronized Open Graph metadata across all pages.
+- **Analytics:** Integrated Google Analytics 4 tracking for page views and link clicks.
 
 ## 🔐 Authentication Behavior
 
@@ -170,11 +172,15 @@ We are transitioning to a dynamic, database-driven application.
 - [x] **Phase 2: Partner Management (Completed)** - Dynamic partner logo management.
 - [x] **Phase 3: Portfolio Management (Completed)** - Dynamic project portfolio with details and status.
 - [x] **Phase 4: Core Improvements (Completed)** - Security, localization cleanup, and performance.
-- [/] **Phase 5: Growth & Hardening (In Progress)**
+- [x] **Phase 5: Growth & Hardening (Completed)**
     - [x] Functional Contact Form (EmailJS) with branded templates.
     - [x] Security & Auth UX Hardening (Generic errors, auto-focus, loading states).
     - [x] SEO Maximization (Sitemap, Robots.txt, Dynamic OG).
-    - [ ] Dynamic Social Media Management via Admin Dashboard.
+    - [x] Dynamic Hero Slider (Admin manageable).
+    - [x] Quick Links Manager (Linktree-style dash).
+    - [x] Google Analytics 4 Integration.
+
+**Next Priority:** UI/UX Polish (Dark Mode, Skeleton Loaders).
 
 For the detailed Phase 5 plan, refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
 
