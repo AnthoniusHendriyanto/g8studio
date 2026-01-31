@@ -74,7 +74,7 @@ export default function PortfolioManager() {
             resetForm();
             setIsDialogOpen(false);
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message);
         },
     });
@@ -112,7 +112,7 @@ export default function PortfolioManager() {
             resetForm();
             setIsDialogOpen(false);
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message);
         },
     });
@@ -126,7 +126,7 @@ export default function PortfolioManager() {
             queryClient.invalidateQueries({ queryKey: ['portfolio'] });
             toast.success('Project deleted successfully');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message);
         },
     });

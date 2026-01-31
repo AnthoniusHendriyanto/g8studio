@@ -42,7 +42,7 @@ export default function PartnerManager() {
             setSelectedFile(null);
             setIsDialogOpen(false);
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message);
         },
     });
@@ -56,7 +56,7 @@ export default function PartnerManager() {
             queryClient.invalidateQueries({ queryKey: ['partners'] });
             toast.success('Partner deleted successfully');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message);
         },
     });

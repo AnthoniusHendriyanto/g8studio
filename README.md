@@ -55,7 +55,7 @@ To set up the Supabase database for this project, follow these steps:
 ### SQL Setup Script
 Instead of running commands manually, you can run the provided SQL script which contains all table definitions and policies.
 
-1.  Open `supabase_complete_setup.sql` in this repository.
+1.  Open `docs/supabase_complete_setup.sql` in this repository.
 2.  Copy the contents.
 3.  Paste and run it in your **Supabase SQL Editor**.
 
@@ -72,7 +72,7 @@ Instead of running commands manually, you can run the provided SQL script which 
 We use **EmailJS** for contact form submissions. This allows you to receive professional, branded emails directly in your inbox.
 
 1.  **Create an EmailJS account** at [emailjs.com](https://www.emailjs.com/).
-2.  **Follow the [EmailJS Setup Guide](./.gemini/antigravity/brain/19f243c3-5870-43f1-8e1c-747baef03c7a/emailjs_setup_guide.md)** to:
+- **Follow the [EmailJS Setup Guide](./docs/EMAIL_SETUP.md)** to:
     *   Connect your Gmail service.
     *   Set up the responsive HTML email template using the example at [`src/templates/contact-email.html`](./src/templates/contact-email.html).
     *   Configure variable mapping (`{{from_name}}`, `{{from_email}}`, etc.).
@@ -167,7 +167,7 @@ src/
 
 We are transitioning to a dynamic, database-driven application.
 
-**Current Status (Phase 5 In Progress):**
+**Current Status (Phase 5 Completed):**
 - [x] **Phase 1: Foundation (Completed)** - Supabase integration and Authentication.
 - [x] **Phase 2: Partner Management (Completed)** - Dynamic partner logo management.
 - [x] **Phase 3: Portfolio Management (Completed)** - Dynamic project portfolio with details and status.
@@ -179,13 +179,11 @@ We are transitioning to a dynamic, database-driven application.
     - [x] Dynamic Hero Slider (Admin manageable).
     - [x] Quick Links Manager (Linktree-style dash).
     - [x] Google Analytics 4 Integration.
+    - [x] UI/UX Polish (Dark Mode, Skeleton Loaders).
 
-**Next Priority:** UI/UX Polish (Dark Mode, Skeleton Loaders).
-
-For the detailed Phase 5 plan, refer to **[NEXT_PHASE.md](./NEXT_PHASE.md)**.
+For the detailed Phase 5 plan, refer to **[NEXT_PHASE.md](./docs/NEXT_PHASE.md)**.
 
 ---
 
 ### 📋 **Important Note for Admins**
-Please refer to the **[TODO.md](./TODO.md)** for a consolidated list of manual configuration steps required for production (Analytics, Domains, Supabase, etc.).
 

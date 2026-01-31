@@ -48,7 +48,7 @@ const HeroManager = () => {
                 is_global_text: false,
             });
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to upload slide');
         },
     });
@@ -63,7 +63,7 @@ const HeroManager = () => {
             queryClient.invalidateQueries({ queryKey: ['hero-slides'] });
             toast.success('Slide deleted successfully!');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to delete slide');
         },
     });
@@ -76,7 +76,7 @@ const HeroManager = () => {
             queryClient.invalidateQueries({ queryKey: ['hero-slides'] });
             toast.success('Slide updated successfully!');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to update slide');
         },
     });

@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isOpen
         ? 'bg-background/95 backdrop-blur-md shadow-sm'
         : isTransparent
           ? 'bg-transparent'
@@ -44,7 +44,7 @@ const Navbar = () => {
             <img
               src={logoImage}
               alt="G8 Studio - HPL Store & Architect Interior"
-              className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isTransparent ? 'brightness-0 invert' : ''}`}
+              className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isTransparent && !isOpen ? 'brightness-0 invert' : ''}`}
             />
           </Link>
 
@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-[11px] font-medium tracking-[0.2em] uppercase transition-colors hover:text-accent ${isTransparent
+                className={`text-[11px] font-medium tracking-[0.2em] uppercase transition-colors hover:text-accent ${isTransparent && !isOpen
                   ? 'text-white/90 hover:text-white'
                   : location.pathname === link.href
                     ? 'text-accent'

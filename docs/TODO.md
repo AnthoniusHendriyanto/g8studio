@@ -28,7 +28,7 @@ This file contains all remaining manual steps required to fully configure the G8
     - `VITE_SUPABASE_URL=your_project_url`
     - `VITE_SUPABASE_ANON_KEY=your_anon_key`
 - [ ] **Database Schema & Configuration**:
-  - Run the SQL script found in `supabase_complete_setup.sql` in your Supabase SQL Editor.
+  - Run the SQL script found in `supabase_complete_setup.sql` (in this `docs/` folder) in your Supabase SQL Editor.
   - This will create all necessary tables: `partner_logos`, `portfolio_items`, `profiles`, `hero_slides`, and `quick_links`.
 - [ ] **Storage Buckets**: 
   - Create **Public** buckets: `partner-logos`, `portfolio-images`, and `hero-images`.

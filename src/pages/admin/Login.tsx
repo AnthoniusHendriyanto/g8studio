@@ -25,7 +25,7 @@ export default function Login() {
 
     // Redirect if already logged in
     if (user) {
-        const from = (location.state as any)?.from?.pathname || "/admin";
+        const from = (location.state as { from?: { pathname: string } })?.from?.pathname || "/admin";
         navigate(from, { replace: true });
         return null;
     }
@@ -43,9 +43,9 @@ export default function Login() {
             if (error) throw error;
 
             toast.success("Welcome back!");
-            const from = (location.state as any)?.from?.pathname || "/admin";
+            const from = (location.state as { from?: { pathname: string } })?.from?.pathname || "/admin";
             navigate(from, { replace: true });
-        } catch (error: any) {
+        } catch (error: unknown) {
             // Generic error message to prevent user enumeration
             toast.error("Invalid email or password");
             // Clear password field for security

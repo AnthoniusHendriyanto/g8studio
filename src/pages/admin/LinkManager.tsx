@@ -68,7 +68,7 @@ const LinkManager = () => {
                 is_active: true,
             });
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to add link');
         },
     });
@@ -80,7 +80,7 @@ const LinkManager = () => {
             queryClient.invalidateQueries({ queryKey: ['quick-links-admin'] });
             toast.success('Link deleted successfully!');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to delete link');
         },
     });
@@ -93,7 +93,7 @@ const LinkManager = () => {
             queryClient.invalidateQueries({ queryKey: ['quick-links-admin'] });
             toast.success('Link visibility updated!');
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             toast.error(error.message || 'Failed to update link');
         },
     });

@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
-import { portfolioService } from '@/services/portfolio';
+import { portfolioService, type PortfolioItem } from '@/services/portfolio';
 import Layout from '@/components/layout/Layout';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { Loader2 } from 'lucide-react';
 
 
 // Image Gallery Modal Component
-const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void }) => {
+const ProjectModal = ({ project, onClose }: { project: PortfolioItem; onClose: () => void }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const nextImage = (e: React.MouseEvent) => {
@@ -79,7 +79,7 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void 
 
                                 {/* Dots */}
                                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                                    {project.images.map((_: any, idx: number) => (
+                                    {project.images.map((_: unknown, idx: number) => (
                                         <div
                                             key={idx}
                                             className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'
@@ -140,7 +140,7 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: () => void 
 
 const Portfolio = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
     // Fetch projects from Supabase
     const { data: projects, isLoading } = useQuery({

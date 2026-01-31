@@ -7,14 +7,21 @@ import { Loader2 } from 'lucide-react';
 
 // Helper to get icon component by name
 const getIconComponent = (iconName: string) => {
-    const IconComponent = (LucideIcons as any)[iconName];
+    const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+    const IconComponent = icons[iconName];
     return IconComponent || LucideIcons.Link;
 };
 
 // Google Analytics event tracking
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+    }
+}
+
 const trackLinkClick = (title: string, url: string) => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'click', {
+    if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'click', {
             event_category: 'Quick Link',
             event_label: title,
             value: url,
